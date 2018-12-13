@@ -30,6 +30,7 @@ function play()
     drawOverlay();
     changeUserPos();
     drawPlayer1(userX, userY, facing);
+    playerLocation();
     
 }
 function changeUserPos()

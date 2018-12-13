@@ -24,8 +24,6 @@ function drawPlayer1(x, y, face)
         drawArm(x + 8, y + 15, 5, 5, 10);
         drawHead(x, y, 22, 22, 22, "ne");
     }
-    
-    
 }
 function drawHelmet1()
 {
