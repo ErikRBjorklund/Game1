@@ -3,13 +3,16 @@ window.onload = initAll;
 var canvas;
 var ctx;
 
+ 
+var userX = 400;
+var userY = 400;
 
+var upPressed = false;
+var downPressed = false;
+var leftPressed = false;
+var rightPressed = false;
+var facing = "ne";
 
-
-
-var world = [[0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0]];  
-var userX = 0;
-var userY = 0;
 function initAll()
 {
     canvas = document.getElementById("myCanvas");       //element it's in
@@ -23,121 +26,89 @@ function initAll()
 function play()
 {
     ctx.clearRect(0, 0, 960, 640);
-    drawBoard();
-}
-function genWorld()
-{
-    for(var i = 0; i < world.length; i++)
-    {
-        for(var j = 0; j < world[i].length; j++)
-        {
-            world[j][i] = getRandomInt(0, 1);
-        }
-    }
-}
-
-function drawBoard()
-{
-    for(var i = 0; i < world.length; i++)
-    {
-        for(var j = 0; j < world[i].length; j++) 
-        {
-            if(world[j][i] === 0)
-                drawGrass(i * 40  - j * 40 + 480, j*20 + i*20 + 240, 40, 40, 40);
-            if(world[j][i] === 1)
-                drawSand(i * 40  - j * 40 + 480, j*20 + i*20 + 240, 40, 40, 40);
-            
-        }
-    }
+    drawWorld();
+    drawOverlay();
+    changeUserPos();
+    drawPlayer1(userX, userY, facing);
     
 }
-function drawSand(x, y, wx, wy, h) 
+function changeUserPos()
 {
-    // left face
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x - wx, y - wx * 0.5);
-    ctx.lineTo(x - wx, y - h - wx * 0.5);
-    ctx.lineTo(x, y - h * 1);
-    ctx.closePath();
-    ctx.fillStyle = "#838357";
-    ctx.strokeStyle = "#7a7a51"; //"#7a7a51"
-    ctx.stroke();
-    ctx.fill();
-
-    // right face
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + wy, y - wy * 0.5);
-    ctx.lineTo(x + wy, y - h - wy * 0.5);
-    ctx.lineTo(x, y - h * 1);
-    ctx.closePath();
-    ctx.fillStyle = "#6f6f49";
-    ctx.strokeStyle = "#676744"; //"#676744"
-    ctx.stroke();
-    ctx.fill();
-
-    // center face
-    ctx.beginPath();
-    ctx.moveTo(x, y - h);
-    ctx.lineTo(x - wx, y - h - wx * 0.5);
-    ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
-    ctx.lineTo(x + wy, y - h - wy * 0.5);
-    ctx.closePath();
-    ctx.fillStyle = "#989865";
-    ctx.strokeStyle = "#8e8e5e"; //"#464340"
-    ctx.stroke();
-    ctx.fill();
-}
-function drawGrass(x, y, wx, wy, h)
-{
-    // left face
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x - wx, y - wx * 0.5);
-    ctx.lineTo(x - wx, y - h - wx * 0.5);
-    ctx.lineTo(x, y - h * 1);
-    ctx.closePath();
-    ctx.fillStyle = "#46523C";
-    ctx.strokeStyle = "#293A18";
-    ctx.stroke();
-    ctx.fill();
-
-    // right face
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + wy, y - wy * 0.5);
-    ctx.lineTo(x + wy, y - h - wy * 0.5);
-    ctx.lineTo(x, y - h * 1);
-    ctx.closePath();
-    ctx.fillStyle = "#3D5229"; // 
-    ctx.strokeStyle = "#293A18"; //"#676744"
-    ctx.stroke();
-    ctx.fill();
-
-    // center face
-    ctx.beginPath();
-    ctx.moveTo(x, y - h);
-    ctx.lineTo(x - wx, y - h - wx * 0.5);
-    ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
-    ctx.lineTo(x + wy, y - h - wy * 0.5);
-    ctx.closePath();
-    ctx.fillStyle = "#3B5323";
-    ctx.strokeStyle = "#293A18"; 
-    ctx.stroke();
-    ctx.fill();
+    if(upPressed === true)
+    {
+        userY-=.5;
+        userX+=1;
+        facing = "ne";
+    }
+    if(downPressed === true)
+    {
+        userY+=.5;
+        userX-=1;
+        facing = "sw";
+    }
+    if(leftPressed === true)
+    {
+        userY-=.5;
+        userX-=1;
+        facing = "nw";
+    }
+    if(rightPressed === true)
+    {
+        userY+=.5;
+        userX+=1;
+        facing = "se";
+    }
 }
 function keyDownHandler(e)
 {
-    if(e.key = 'w')
+    if(e.key === 'w')
     {
-
+        upPressed = true;
+        downPressed = false;
+        leftPressed = false;
+        rightPressed = false;
     }
+    if(e.key === 's')
+    {
+        downPressed = true;
+        upPressed = false;
+        leftPressed = false;
+        rightPressed = false;
+    }
+    if(e.key === 'a')
+    {
+        leftPressed = true;
+        downPressed = false;
+        upPressed = false;
+        rightPressed = false;
+    }
+    if(e.key === 'd')
+    {
+        rightPressed = true;
+        downPressed = false;
+        leftPressed = false;
+        upPressed = false;
+    }
+    
 }
 function keyUpHandler(e)
 {
-    
-  
+    if(e.key === 'w')
+    {
+        upPressed = false;
+    }
+    if(e.key === 's')
+    {
+        downPressed = false;
+    }
+    if(e.key === 'a')
+    {
+        leftPressed = false;
+    }
+    if(e.key === 'd')
+    {
+        rightPressed = false;
+    }
 }
 function getRandomInt(min, max) 
 {
