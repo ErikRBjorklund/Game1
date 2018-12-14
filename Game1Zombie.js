@@ -1,40 +1,35 @@
 var zomx = [400];
 var zomy = [400];
-var zomface = ["sw"];
+var zomface = ["nw"];
 var zomhealth = [400];
 var list = [];
 function drawZombie(x, y, face)
 {
     if(face === "sw")
     {
+        drawZombieArm(x - 12, y + 5, 5, 5, 10);
         drawZombieChest(x- 2, y + 25, 15, 15, 30);
         drawZombieArm(x + 8, y + 15, 5, 5, 10);
         drawZombieHead(x, y, 22, 22, 22, "sw");
     }
     if(face === "se")
     {
+        drawZombieArm2(x + 8, y + 6, 5, 5, 10);
         drawZombieChest(x- 2, y + 25, 15, 15, 30);
-        drawZombieArm(x - 12, y + 15, 5, 5, 10);
+        drawZombieArm2(x - 12, y + 15, 5, 5, 10);
         drawZombieHead(x, y, 22, 22, 22, "se");
     }
     if(face === "nw")
     {
         drawZombieChest(x- 2, y + 25, 15, 15, 30);
-        drawZombieArm(x - 12, y + 15, 5, 5, 10);
+        drawZombieArm2(x - 20, y + 10, 5, 5, 10);
         drawZombieHead(x, y, 22, 22, 22, "nw");
     }
     if(face === "ne")
     {
         drawZombieChest(x- 2, y + 25, 15, 15, 30);
-        drawZombieArm(x + 8, y + 15, 5, 5, 10);
+        drawZombieArm(x + 16, y + 10, 5, 5, 10);
         drawZombieHead(x, y, 22, 22, 22, "ne");
-    }
-}
-function drawZombies()
-{
-    for(var i = 0; i < zomx.length; i++)
-    {
-        drawZombie(zomx[i], zomy[i], zomface[i]);
     }
 }
 function checkCollision(x, y, xZ, yZ)
@@ -93,10 +88,6 @@ function checkCollision(x, y, xZ, yZ)
     {
         return true;
     }
-    if((xxabs/bb) + (yyabs/aa) <= 1)
-    {
-        return true;
-    }
     xx1 = x;
     yy1 = y;
     xx2 = x+22;
@@ -120,10 +111,6 @@ function checkCollision(x, y, xZ, yZ)
     xxabs = Math.abs(WW1*UU1);
     yyabs = Math.abs(WW2*VV1);
     
-    if((xxabs/bb) + (yyabs/aa) <= 1)
-    {
-        return true;
-    }
     if((xxabs/bb) + (yyabs/aa) <= 1)
     {
         return true;
@@ -157,6 +144,120 @@ function checkCollision(x, y, xZ, yZ)
     }
     return false;
 }
+function closestCollision(x, y, xZ, yZ)
+{  
+    var holder = 1000;
+    var xx1 = x;
+    var yy1 = y;
+    var xx2 = x+22;
+    var yy2 = y-11;
+    var xx3 = x;
+    var yy3 = y-22;
+    var xx4 = x-22;
+    var yy4 = y-11;
+
+    var qq1 = .5 * (xx3 + xx1);
+    var qq2 = .5 * (yy3 + yy1);
+    var aa = .5 * Math.sqrt(Math.pow(xx3 - xx1, 2) + Math.pow(yy3 - yy1, 2));
+    var bb = .5 * Math.sqrt(Math.pow(xx4 - xx2, 2) + Math.pow(yy4 - yy2, 2));
+
+    var UU1 = (xx4 - xx2)/(2*bb);
+    var VV1 = (yy1-yy3)/(2*aa);
+
+    var WW1 = xZ - qq1;
+    var WW2 = yZ - qq2;
+
+    var xxabs = Math.abs(WW1*UU1);
+    var yyabs = Math.abs(WW2*VV1);
+            
+    if((xxabs/bb) + (yyabs/aa) <= holder)
+    {
+        holder = (xxabs/bb) + (yyabs/aa);
+    }
+    xx1 = x;
+    yy1 = y;
+    xx2 = x+22;
+    yy2 = y-11;
+    xx3 = x;
+    yy3 = y-22;
+    xx4 = x-22;
+    yy4 = y-11;
+
+    qq1 = .5 * (xx3 + xx1);
+    qq2 = .5 * (yy3 + yy1);
+    aa = .5 * Math.sqrt(Math.pow(xx3 - xx1, 2) + Math.pow(yy3 - yy1, 2));
+    bb = .5 * Math.sqrt(Math.pow(xx4 - xx2, 2) + Math.pow(yy4 - yy2, 2));
+
+    UU1 = (xx4 - xx2)/(2*bb);
+    VV1 = (yy1-yy3)/(2*aa);
+
+    WW1 = xZ + 22 - qq1;
+    WW2 = yZ - 11 - qq2;
+
+    xxabs = Math.abs(WW1*UU1);
+    yyabs = Math.abs(WW2*VV1);
+    
+    if((xxabs/bb) + (yyabs/aa) <= holder)
+    {
+        holder = (xxabs/bb) + (yyabs/aa);
+    }
+    xx1 = x;
+    yy1 = y;
+    xx2 = x+22;
+    yy2 = y-11;
+    xx3 = x;
+    yy3 = y-22;
+    xx4 = x-22;
+    yy4 = y-11;
+
+    qq1 = .5 * (xx3 + xx1);
+    qq2 = .5 * (yy3 + yy1);
+    aa = .5 * Math.sqrt(Math.pow(xx3 - xx1, 2) + Math.pow(yy3 - yy1, 2));
+    bb = .5 * Math.sqrt(Math.pow(xx4 - xx2, 2) + Math.pow(yy4 - yy2, 2));
+
+    UU1 = (xx4 - xx2)/(2*bb);
+    VV1 = (yy1-yy3)/(2*aa);
+
+    WW1 = xZ - 22 - qq1;
+    WW2 = yZ - 11 - qq2;
+
+    xxabs = Math.abs(WW1*UU1);
+    yyabs = Math.abs(WW2*VV1);
+    
+    if((xxabs/bb) + (yyabs/aa) <= holder)
+    {
+        holder = (xxabs/bb) + (yyabs/aa);
+    }
+    xx1 = x;
+    yy1 = y;
+    xx2 = x+22;
+    yy2 = y-11;
+    xx3 = x;
+    yy3 = y-22;
+    xx4 = x-22;
+    yy4 = y-11;
+
+    qq1 = .5 * (xx3 + xx1);
+    qq2 = .5 * (yy3 + yy1);
+    aa = .5 * Math.sqrt(Math.pow(xx3 - xx1, 2) + Math.pow(yy3 - yy1, 2));
+    bb = .5 * Math.sqrt(Math.pow(xx4 - xx2, 2) + Math.pow(yy4 - yy2, 2));
+
+    UU1 = (xx4 - xx2)/(2*bb);
+    VV1 = (yy1-yy3)/(2*aa);
+
+    WW1 = xZ - qq1;
+    WW2 = yZ - 22 - qq2;
+
+    xxabs = Math.abs(WW1*UU1);
+    yyabs = Math.abs(WW2*VV1);
+    
+    if((xxabs/bb) + (yyabs/aa) <= holder)
+    {
+        holder = (xxabs/bb) + (yyabs/aa);
+    }
+    return holder;
+}
+
 function checkZombieCollisions(x, y)
 {
     
@@ -394,24 +495,27 @@ function drawZombieChest(x, y, wx, wy, h)
 }
 function drawZombieArm(x, y, wx, wy, h) 
 {
+    
    // left face
    ctx.beginPath();
-   ctx.moveTo(x, y);
-   ctx.lineTo(x - wx, y - wx * 0.5);
-   ctx.lineTo(x - wx, y - h - wx * 0.5);
-   ctx.lineTo(x, y - h * 1);
+   ctx.moveTo(x - 8, y);
+   ctx.lineTo(x - 13, y - h  +7);
+   ctx.lineTo(x - 13, y - h + 1);
+   
+   ctx.lineTo(x - 8, y - h + 5);
+   
    ctx.closePath();
    ctx.fillStyle = "#78C165";
    ctx.strokeStyle = "#7C9861";
    ctx.stroke();
    ctx.fill();
-
+    
    // right face
    ctx.beginPath();
-   ctx.moveTo(x, y);
-   ctx.lineTo(x + wy, y - wy * 0.5);
+   ctx.moveTo(x - 8, y);
+   ctx.lineTo(x + wy, y - wy * 0.5 -4);
    ctx.lineTo(x + wy, y - h - wy * 0.5);
-   ctx.lineTo(x, y - h * 1);
+   ctx.lineTo(x - 8, y - h + 4);
    ctx.closePath();
    ctx.fillStyle = "#78C165"; // 
    ctx.strokeStyle = "#7C9861"; //"#676744"
@@ -420,13 +524,138 @@ function drawZombieArm(x, y, wx, wy, h)
 
    // center face
    ctx.beginPath();
-   ctx.moveTo(x, y - h);
-   ctx.lineTo(x - wx, y - h - wx * 0.5);
+   ctx.moveTo(x - 8, y - h + 4);
+   ctx.lineTo(x - 12, y - h + 1);
    ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
    ctx.lineTo(x + wy, y - h - wy * 0.5);
    ctx.closePath();
    ctx.fillStyle = "#78C165";
    ctx.strokeStyle = "#7C9861"; 
    ctx.stroke();
-   ctx.fill();      
+   ctx.fill();  
+       
+}
+function drawZombieArm2(x, y, wx, wy, h) 
+{
+    
+   // left face
+   ctx.beginPath();
+   ctx.moveTo(x + 8, y);
+   ctx.lineTo(x + 13, y - h  +7);
+   ctx.lineTo(x + 13, y - h + 1);
+   
+   ctx.lineTo(x + 8, y - h + 5);
+   
+   ctx.closePath();
+   ctx.fillStyle = "#78C165";
+   ctx.strokeStyle = "#7C9861";
+   ctx.stroke();
+   ctx.fill();
+    
+   // right face
+   ctx.beginPath();
+   ctx.moveTo(x + 8, y);
+   ctx.lineTo(x - wy, y - wy * 0.5 -4);
+   ctx.lineTo(x - wy, y - h - wy * 0.5);
+   ctx.lineTo(x + 8, y - h + 4);
+   ctx.closePath();
+   ctx.fillStyle = "#78C165"; // 
+   ctx.strokeStyle = "#7C9861"; //"#676744"
+   ctx.stroke();
+   ctx.fill();
+
+   // center face
+   ctx.beginPath();
+   ctx.moveTo(x + 8, y - h + 4);
+   ctx.lineTo(x + 12, y - h + 1);
+   ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
+   ctx.lineTo(x - wy, y - h - wy * 0.5);
+   ctx.closePath();
+   ctx.fillStyle = "#78C165";
+   ctx.strokeStyle = "#7C9861"; 
+   ctx.stroke();
+   ctx.fill();  
+       
+}
+
+function implementAI()
+{
+    for(var i = 0; i < zomx.length; i++)
+    {
+        zombieAI(i, i);
+    }
+}
+
+function zombieAI(zombxCoord, zombyCoord)
+{
+    chase(zombxCoord, zombyCoord);
+}
+function chase(arrPosX, arrPosY)
+{
+    if(checkCollision(userX, userY, zomx[arrPosX], zomy[arrPosY]) === false)
+    {
+        if(closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) && closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5))
+        {
+            if(closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) > 1)
+            {
+                zomx[arrPosX]+=.5;
+                zomy[arrPosY] -= .25;
+                zomface[arrPosX] = "ne";
+            }
+        }
+        else if(closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) && closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5))
+        {
+            if(closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) > 1)
+            {
+                zomx[arrPosX]-=.5;
+                zomy[arrPosY] -= .25;
+                zomface[arrPosX] = "nw";
+            }
+        }
+        else if(closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5))
+        {
+            if(closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) > 1)
+            {
+                zomx[arrPosX]-=.5;
+                zomy[arrPosY] += .25;
+                zomface[arrPosX] = "sw";
+            }
+        }
+        else if(closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5))
+        {
+            if(closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5) > 1)
+            {
+                zomx[arrPosX] +=.5;
+                zomy[arrPosY] += .25;
+                zomface[arrPosX] = "se";
+            }
+        }
+        else if(userX === zomx[arrPosX])
+        {
+            if(userY > zomy[arrPosY])
+            {
+                zomy[arrPosY] += .5;
+                zomface[arrPosX] = "se";
+            }
+            if(userY < zomy[arrPosY])
+            {
+                zomy[arrPosY] -= .5;
+                zomface[arrPosX] = "nw";
+            }
+        }
+        else if(userY === zomy[arrPosY])
+        {
+            if(userX > zomx[arrPosX])
+            {
+                zomx[arrPosX] += 1;
+                zomface[arrPosX] = "se";
+            }
+            if(userX < zomx[arrPosX])
+            {
+                zomx[arrPosX] -= 1;
+                zomface[arrPosX] = "nw";
+            }
+        }
+        
+    }
 }

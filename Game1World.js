@@ -151,10 +151,11 @@ function drawWorld()
                 drawGrass(i * 40  - j * 40 + 480, j*20 + i*20 + 240, 40, 40, 40);
             if(world[j][i] === 1)
                 drawSand(i * 40  - j * 40 + 480, j*20 + i*20 + 240, 40, 40, 40);
+                /*
             if(world2[j][i] === true)
             {
                 drawPlayerTop(i * 40  - j * 40 + 480, j*20 + i*20 + 240, 40, 40, 40);
-            }
+            }*/
         }
     }
 }
@@ -262,5 +263,4 @@ function drawAll()
             drawPlayer1(userX, userY, facing);
         }
     }
-    
 }

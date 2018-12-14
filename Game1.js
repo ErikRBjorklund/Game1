@@ -30,6 +30,7 @@ function play()
     changeUserPos();
     drawAll();
     playerLocation();
+    implementAI();
 }
 function changeUserPos()
 {
