@@ -4,8 +4,8 @@ var canvas;
 var ctx;
 
  
-var userX = 400;
-var userY = 400;
+var userX = 480;
+var userY = 320;
 
 var upPressed = false;
 var downPressed = false;
@@ -27,36 +27,46 @@ function play()
 {
     ctx.clearRect(0, 0, 960, 640);
     drawWorld();
-    drawOverlay();
     changeUserPos();
-    drawPlayer1(userX, userY, facing);
+    drawAll();
     playerLocation();
-    
 }
 function changeUserPos()
 {
     if(upPressed === true)
     {
-        userY-=.5;
-        userX+=1;
+        if(checkZombieCollisions(userX + 1, userY - 1) != true)
+        {
+            userY-=.5;
+            userX+=1;
+        }
         facing = "ne";
     }
     if(downPressed === true)
     {
-        userY+=.5;
-        userX-=1;
+        if(checkZombieCollisions(userX - 1, userY + 1) != true)
+        {
+            userY+=.5;
+            userX-=1;
+        }
         facing = "sw";
     }
     if(leftPressed === true)
     {
-        userY-=.5;
-        userX-=1;
+        if(checkZombieCollisions(userX - 1, userY - 1) != true)
+        {
+            userY-=.5;
+            userX-=1;
+        }
         facing = "nw";
     }
     if(rightPressed === true)
     {
-        userY+=.5;
-        userX+=1;
+        if(checkZombieCollisions(userX + 1, userY + 1) != true)
+        {
+            userY+=.5;
+            userX+=1;
+        }
         facing = "se";
     }
 }

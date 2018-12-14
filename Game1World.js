@@ -157,10 +157,6 @@ function drawWorld()
             }
         }
     }
-    if(world2[0][0] === true)
-    {
-        drawPlayerTop(0 * 40  - 0 * 40 + 480, 0*20 + 0*20 + 240, 40, 40, 40);
-    }
 }
 function drawSand(x, y, wx, wy, h) 
 {
@@ -251,4 +247,20 @@ function drawPlayerTop(x, y, wx, wy, h)
     ctx.strokeStyle = "#464340"; //"#8e8e5e"
     ctx.stroke();
     ctx.fill();
+}
+function drawAll()
+{
+    listOrder();
+    for(var i = 0; i < list.length; i++)
+    {
+        if(list[i] >= 0)
+        {
+            drawZombie(zomx[list[i]], zomy[list[i]], zomface[list[i]]);
+        }
+        if(list[i] === -1)
+        {
+            drawPlayer1(userX, userY, facing);
+        }
+    }
+    
 }
