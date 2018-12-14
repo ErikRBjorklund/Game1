@@ -38,8 +38,11 @@ function changeUserPos()
     {
         if(checkZombieCollisions(userX + 1, userY - 1) != true)
         {
-            userY-=.5;
-            userX+=1;
+            if(isPlayerOffBoard(userX + 2, userY - 1) === false)
+            {            
+                userY-=.5;
+                userX+=1;
+            }
         }
         facing = "ne";
     }
@@ -47,8 +50,11 @@ function changeUserPos()
     {
         if(checkZombieCollisions(userX - 1, userY + 1) != true)
         {
-            userY+=.5;
-            userX-=1;
+            if(isPlayerOffBoard(userX - 2, userY + 1) === false)
+            {   
+                userY+=.5;
+                userX-=1;
+            }
         }
         facing = "sw";
     }
@@ -56,8 +62,11 @@ function changeUserPos()
     {
         if(checkZombieCollisions(userX - 1, userY - 1) != true)
         {
-            userY-=.5;
-            userX-=1;
+            if(isPlayerOffBoard(userX - 2, userY - 1) === false)
+            {   
+                userY-=.5;
+                userX-=1;
+            }
         }
         facing = "nw";
     }
@@ -65,8 +74,11 @@ function changeUserPos()
     {
         if(checkZombieCollisions(userX + 1, userY + 1) != true)
         {
-            userY+=.5;
-            userX+=1;
+            if(isPlayerOffBoard(userX + 1, userY + .5) === false)
+            {   
+                userY+=.5;
+                userX+=1;
+            }
         }
         facing = "se";
     }

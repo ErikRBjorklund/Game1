@@ -264,3 +264,126 @@ function drawAll()
         }
     }
 }
+function isPlayerOffBoard(x, y)
+{
+    var ychange = -25;
+    var xchange = 0;
+    var x1 = 480 + xchange;
+    var y1 = 160 + ychange;
+    var x2 = 840 + xchange;
+    var y2 = 360 + ychange;
+    var x3 = 480 + xchange;
+    var y3 = 520 + ychange;
+    var x4 = 120 + xchange;
+    var y4 = 360 + ychange;
+
+    var q1 = .5 * (x3 + x1);
+    var q2 = .5 * (y3 + y1);
+    var a = .5 * Math.sqrt(Math.pow(x3 - x1, 2) + Math.pow(y3 - y1, 2));
+    var b = .5 * Math.sqrt(Math.pow(x4 - x2, 2) + Math.pow(y4 - y2, 2));
+
+    var U1 = (x4 - x2)/(2*b);
+    var V1 = (y1-y3)/(2*a);
+
+    var W1 = x - q1;
+    var W2 = y - q2;
+
+    var xabs = Math.abs(W1*U1);
+    var yabs = Math.abs(W2*V1);
+    
+    if((xabs/b) + (yabs/a) > 1)
+    {
+        return true;
+    }
+    
+    ychange = -18;
+    xchange = 15;
+    x1 = 480 + xchange;
+    y1 = 160 + ychange;
+    x2 = 840 + xchange;
+    y2 = 360 + ychange;
+    x3 = 480 + xchange;
+    y3 = 520 + ychange;
+    x4 = 120 + xchange;
+    y4 = 360 + ychange;
+
+    q1 = .5 * (x3 + x1);
+    q2 = .5 * (y3 + y1);
+    a = .5 * Math.sqrt(Math.pow(x3 - x1, 2) + Math.pow(y3 - y1, 2));
+    b = .5 * Math.sqrt(Math.pow(x4 - x2, 2) + Math.pow(y4 - y2, 2));
+
+    U1 = (x4 - x2)/(2*b);
+    V1 = (y1-y3)/(2*a);
+
+    W1 = x +  - q1;
+    W2 = y - q2;
+
+    xabs = Math.abs(W1*U1);
+    yabs = Math.abs(W2*V1);
+    
+    if((xabs/b) + (yabs/a) > 1)
+    {
+        return true;
+    }
+
+    ychange = -18;
+    xchange = -15;
+    x1 = 480 + xchange;
+    y1 = 160 + ychange;
+    x2 = 840 + xchange;
+    y2 = 360 + ychange;
+    x3 = 480 + xchange;
+    y3 = 520 + ychange;
+    x4 = 120 + xchange;
+    y4 = 360 + ychange;
+
+    q1 = .5 * (x3 + x1);
+    q2 = .5 * (y3 + y1);
+    a = .5 * Math.sqrt(Math.pow(x3 - x1, 2) + Math.pow(y3 - y1, 2));
+    b = .5 * Math.sqrt(Math.pow(x4 - x2, 2) + Math.pow(y4 - y2, 2));
+
+    U1 = (x4 - x2)/(2*b);
+    V1 = (y1-y3)/(2*a);
+
+    W1 = x +  - q1;
+    W2 = y - q2;
+
+    xabs = Math.abs(W1*U1);
+    yabs = Math.abs(W2*V1);
+    
+    if((xabs/b) + (yabs/a) > 1)
+    {
+        return true;
+    }
+
+    ychange = -11;
+    xchange = 0;
+    x1 = 480 + xchange;
+    y1 = 160 + ychange;
+    x2 = 840 + xchange;
+    y2 = 360 + ychange;
+    x3 = 480 + xchange;
+    y3 = 520 + ychange;
+    x4 = 120 + xchange;
+    y4 = 360 + ychange;
+
+    q1 = .5 * (x3 + x1);
+    q2 = .5 * (y3 + y1);
+    a = .5 * Math.sqrt(Math.pow(x3 - x1, 2) + Math.pow(y3 - y1, 2));
+    b = .5 * Math.sqrt(Math.pow(x4 - x2, 2) + Math.pow(y4 - y2, 2));
+
+    U1 = (x4 - x2)/(2*b);
+    V1 = (y1-y3)/(2*a);
+
+    W1 = x +  - q1;
+    W2 = y - q2;
+
+    xabs = Math.abs(W1*U1);
+    yabs = Math.abs(W2*V1);
+    
+    if((xabs/b) + (yabs/a) > 1)
+    {
+        return true;
+    }
+    return false;
+}
