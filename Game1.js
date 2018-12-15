@@ -31,6 +31,7 @@ function play()
     drawAll();
     playerLocation();
     implementAI();
+    drawBullet(400, 400, 5, 5, 5);
 }
 function changeUserPos()
 {
