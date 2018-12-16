@@ -1,7 +1,7 @@
 var zomx = [400];
 var zomy = [400];
 var zomface = ["nw"];
-var zomhealth = [400];
+var zomhealth = ["100"];
 var list = [];
 function drawZombie(x, y, face)
 {
@@ -269,11 +269,6 @@ function checkZombieCollisions(x, y)
         }
     }
 }
-function checkFront(y, yZ)
-{
-    if(y > yZ)
-        return true;
-}
 function listOrder()
 {
     list = [];
@@ -307,6 +302,38 @@ function listOrder()
     if(confirmed === false)
     {
         list.push(-1);
+    }
+    listBulletOrder();
+    var count = 0;
+    for(var i = 0; i < list.length; i++)
+    {
+        for(var j = count; j < bullety.length; j++)
+        {
+            if(list[i] === -1)
+            {
+                if(bullety[j] <= userY + 30)
+                {
+                    list.splice(i, 0, -2);
+                    count++;
+                    /*
+                    console.log("userY: " + userY);
+                    console.log("bulletY: " + bullety[j]);
+                    */
+                }
+            }
+            else if(bullety[j] <= zomy[list[i]] + 30)
+            {
+                list.splice(i, 0, -2);
+                count++;
+            }
+        }
+    }
+    if(count != bullety.length)
+    {
+        for(var i = 0; i < bullety.length - count; i++)
+        {
+            list.push(-2);
+        }
     }
 }
 function drawZombieHead(x, y, wx, wy, h, face) 
@@ -657,5 +684,37 @@ function chase(arrPosX, arrPosY)
             }
         }
         
+    }
+}
+function hitByBullet()
+{
+    for(var i = 0; i < zomx.length; i++)
+    {
+        for(var j = 0; j < bulletx.length; j++)
+        {
+            if(bulletCollision(j, i) === true)
+            {
+                zomhealth[i] -= 35;
+                bulletx.splice(j);
+                bullety.splice(j);
+                bulletd.splice(j);
+                j--;
+                break;
+            }
+        }
+    }
+}
+function checkZombieHealth()
+{
+    for(var i = 0; i < zomhealth.length; i++)
+    {
+        if(zomhealth[i] <= 0)
+        {
+            zomx.splice(i);
+            zomy.splice(i);
+            zomface.splice(i);
+            zomhealth.splice(i);
+            i--;
+        }
     }
 }

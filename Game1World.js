@@ -252,6 +252,7 @@ function drawPlayerTop(x, y, wx, wy, h)
 function drawAll()
 {
     listOrder();
+    var count = 0;
     for(var i = 0; i < list.length; i++)
     {
         if(list[i] >= 0)
@@ -261,6 +262,11 @@ function drawAll()
         if(list[i] === -1)
         {
             drawPlayer1(userX, userY, facing);
+        }
+        if(list[i] === -2)
+        {
+            drawBullet(bulletx[count], bullety[count], 5, 5, 5);
+            count++;
         }
     }
 }

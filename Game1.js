@@ -30,8 +30,11 @@ function play()
     changeUserPos();
     drawAll();
     playerLocation();
-    implementAI();
-    drawBullet(400, 400, 5, 5, 5);
+    //implementAI();
+    moveAllBullets();
+    hitByBullet();
+    checkZombieHealth();
+    removeOffscreenBullets();
 }
 function changeUserPos()
 {
@@ -83,6 +86,7 @@ function changeUserPos()
         }
         facing = "se";
     }
+
 }
 function keyDownHandler(e)
 {
@@ -114,7 +118,16 @@ function keyDownHandler(e)
         leftPressed = false;
         upPressed = false;
     }
-    
+    if(e.key === ' ')
+    {
+        addBullet(userX, userY, facing);
+        console.log("x: "+ bulletx);
+        console.log("Y: "+ bullety);
+        console.log("userX: "+ userX);
+        console.log("userY: "+ userY);
+
+        
+    }
 }
 function keyUpHandler(e)
 {
