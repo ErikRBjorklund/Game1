@@ -26,15 +26,18 @@ function initAll()
 function play()
 {
     ctx.clearRect(0, 0, 960, 640);
+   
     drawWorld();
     changeUserPos();
+    
     drawAll();
     playerLocation();
     //implementAI();
     moveAllBullets();
     hitByBullet();
-    checkZombieHealth();
     removeOffscreenBullets();
+    checkZombieHealth();
+    
 }
 function changeUserPos()
 {
@@ -121,11 +124,11 @@ function keyDownHandler(e)
     if(e.key === ' ')
     {
         addBullet(userX, userY, facing);
+        /*
         console.log("x: "+ bulletx);
         console.log("Y: "+ bullety);
-        console.log("userX: "+ userX);
-        console.log("userY: "+ userY);
-
+        console.log("D: "+ bulletd);
+        */
         
     }
 }

@@ -63,8 +63,8 @@ function addBullet(x, y, direction)
 }
 function moveBullet(arrPos)
 {
-    var xSpeed = 4;
-    var ySpeed = 2;
+    var xSpeed = 8;
+    var ySpeed = 4;
     if(bulletd[arrPos] === "nw")
     {
         bulletx[arrPos] -= xSpeed;
@@ -244,11 +244,12 @@ function removeOffscreenBullets()
 {
     for(var i = 0; i < bulletx.length; i++)
     {
-        if(bulletx[i] > 1000 || bulletx[i] < -20 || bullety[i] < -20 || bullety[i] > 660)
+        if(bulletx[i] > 1000 || bulletx[i] < -20 || bullety[i] < -20 || bullety[i] > 700)
         {
-            bulletx.splice(i);
-            bullety.splice(i);
-            bulletd.splice(i);
+
+            bulletx.splice(i, 1);
+            bullety.splice(i, 1);
+            bulletd.splice(i, 1);
             i--;
         }
     }
