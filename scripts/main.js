@@ -346,7 +346,7 @@ function keyDownHandler(e)
                 intro = 0;
             }
         }
-        else if(e.key === '0' || e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4' || e.key === '5' || e.key === '6' || e.key === '7' || e.key === '8' || e.key === '9')
+        else if (e.keyCode >= 96 && e.keyCode <= 105)
             userInput += e.key;
     }
 }
@@ -369,9 +369,9 @@ function keyUpHandler(e)
 }
 function getRandomInt(min, max)
 {
-  min = Math.ceil(min);
-  max = Math.floor(max) + 1;
-  return Math.floor(Math.random() * (max - min)) + min;
+    min = Math.ceil(min);
+    max = Math.floor(max) + 1;
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 setInterval(play,10);
@@ -380,20 +380,20 @@ setInterval(play,10);
 function drawUserHealth()
 {
     // left face
-   ctx.beginPath();
-   ctx.rect(userX - 20, userY - 60, 40, 5)
-   ctx.closePath();
-   ctx.fillStyle = "red"; //"#bda27e"
-   ctx.fill();
+    ctx.beginPath();
+    ctx.rect(userX - 20, userY - 60, 40, 5)
+    ctx.closePath();
+    ctx.fillStyle = "red"; //"#bda27e"
+    ctx.fill();
 
-   if(playerHealth > 0)
-   {
+    if(playerHealth > 0)
+    {
         ctx.beginPath();
         ctx.rect(userX - 20, userY - 60, playerHealth, 5)
         ctx.closePath();
         ctx.fillStyle = "green"; //"#bda27e"
         ctx.fill();
-   }
+    }
 }
 function drawScore()
 {
@@ -419,7 +419,7 @@ function drawMathProblem()
 }
 function checkAnswer()
 {
-    return rand1 + rand2 === parseInt(userInput)
+    return rand1 + rand2 === parseInt(userInput);
 }
 function introScreen()
 {
