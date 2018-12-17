@@ -352,6 +352,7 @@ function keyDownHandler(e)
 }
 function keyUpHandler(e)
 {
+    // TODO: Use an array for directions, maybe pairs of X an Y directions
     switch (e.key) {
         case 'w':
             upPressed = false;
@@ -374,7 +375,7 @@ function getRandomInt(min, max)
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-setInterval(play,10);
+setInterval(play, 10);
 
 
 function drawUserHealth()
