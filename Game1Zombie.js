@@ -1,7 +1,8 @@
-var zomx = [400];
-var zomy = [400];
-var zomface = ["nw"];
-var zomhealth = ["100"];
+var zomx = [];
+var zomy = [];
+var zomface = [];
+var zomhealth = [];
+var timeSinceAttack = [];
 var list = [];
 function drawZombie(x, y, face)
 {
@@ -616,6 +617,7 @@ function implementAI()
 function zombieAI(zombxCoord, zombyCoord)
 {
     chase(zombxCoord, zombyCoord);
+    zombieAttack(zombxCoord, zombyCoord);
 }
 function chase(arrPosX, arrPosY)
 {
@@ -625,62 +627,178 @@ function chase(arrPosX, arrPosY)
         {
             if(closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) > 1)
             {
-                zomx[arrPosX]+=.5;
-                zomy[arrPosY] -= .25;
-                zomface[arrPosX] = "ne";
+                var isTrue = false;
+                for(var i = 0; i < zomx.length; i++)
+                {
+                    if(i != arrPosX)
+                    {
+                        if(checkCollision(zomx[arrPosX] + 1, zomy[arrPosY] - .5, zomx[i], zomy[i]) === true)
+                        {
+                            isTrue = true;
+                        }
+                    }
+                }
+                if(isTrue === false)
+                {
+                    zomx[arrPosX] += .5;
+                    zomy[arrPosY] -= .25;
+                    zomface[arrPosX] = "ne";
+                }
             }
         }
         else if(closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) && closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5))
         {
             if(closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) > 1)
             {
-                zomx[arrPosX]-=.5;
-                zomy[arrPosY] -= .25;
-                zomface[arrPosX] = "nw";
+                var isTrue = false;
+                for(var i = 0; i < zomx.length; i++)
+                {
+                    if(i != arrPosX)
+                    {
+                        if(checkCollision(zomx[arrPosX] - 1, zomy[arrPosY] - .5, zomx[i], zomy[i]) === true)
+                        {
+                            isTrue = true;
+                        }
+                    }
+                }
+                if(isTrue === false)
+                {
+                    zomx[arrPosX] -= .5;
+                    zomy[arrPosY] -= .25;
+                    zomface[arrPosX] = "nw";
+                }
             }
         }
         else if(closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5))
         {
             if(closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5) > 1)
             {
-                zomx[arrPosX]-=.5;
-                zomy[arrPosY] += .25;
-                zomface[arrPosX] = "sw";
+                var isTrue = false;
+                for(var i = 0; i < zomx.length; i++)
+                {
+                    if(i != arrPosX)
+                    {
+                        if(checkCollision(zomx[arrPosX] - 1, zomy[arrPosY] + .5, zomx[i], zomy[i]) === true)
+                        {
+                            isTrue = true;
+                        }
+                    }
+                }
+                if(isTrue === false)
+                {
+                    zomx[arrPosX] -= .5;
+                    zomy[arrPosY] += .25;
+                    zomface[arrPosX] = "sw";
+                }
             }
         }
         else if(closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] - .5) && closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5) < closestCollision(userX, userY, zomx[arrPosX] - 1, zomy[arrPosY] + .5))
         {
             if(closestCollision(userX, userY, zomx[arrPosX] + 1, zomy[arrPosY] + .5) > 1)
             {
-                zomx[arrPosX] +=.5;
-                zomy[arrPosY] += .25;
-                zomface[arrPosX] = "se";
+                var isTrue = false;
+                for(var i = 0; i < zomx.length; i++)
+                {
+                    if(i != arrPosX)
+                    {
+                        if(checkCollision(zomx[arrPosX] + 1, zomy[arrPosY] + .5, zomx[i], zomy[i]) === true)
+                        {
+                            isTrue = true;
+                        }
+                    }
+                }
+                if(isTrue === false)
+                {
+                    zomx[arrPosX] += .5;
+                    zomy[arrPosY] += .25;
+                    zomface[arrPosX] = "se";
+                }
             }
         }
         else if(userX === zomx[arrPosX])
         {
             if(userY > zomy[arrPosY])
             {
-                zomy[arrPosY] += .5;
-                zomface[arrPosX] = "se";
+                var isTrue = false;
+                for(var i = 0; i < zomx.length; i++)
+                {
+                    if(i != arrPosX)
+                    {
+                        if(checkCollision(zomx[arrPosX], zomy[arrPosY] + 1, zomx[i], zomy[i]) === true)
+                        {
+                            isTrue = true;
+                        }
+                    }
+                }
+                if(isTrue === false)
+                {
+                    zomy[arrPosY] += .5;
+                    zomface[arrPosX] = "se";
+                }
             }
             if(userY < zomy[arrPosY])
             {
-                zomy[arrPosY] -= .5;
-                zomface[arrPosX] = "nw";
+                
+                var isTrue = false;
+                for(var i = 0; i < zomx.length; i++)
+                {
+                    if(i != arrPosX)
+                    {
+                        if(checkCollision(zomx[arrPosX], zomy[arrPosY] - 1, zomx[i], zomy[i]) === true)
+                        {
+                            isTrue = true;
+                        }
+                    }
+                }
+                if(isTrue === false)
+                {
+                    zomy[arrPosY] -= .5;
+                    zomface[arrPosX] = "nw";
+                }
             }
         }
         else if(userY === zomy[arrPosY])
         {
             if(userX > zomx[arrPosX])
             {
-                zomx[arrPosX] += 1;
-                zomface[arrPosX] = "se";
+                var isTrue = false;
+                for(var i = 0; i < zomx.length; i++)
+                {
+                    if(i != arrPosX)
+                    {
+                        if(checkCollision(zomx[arrPosX] + 2, zomy[arrPosY], zomx[i], zomy[i]) === true)
+                        {
+                            isTrue = true;
+                        }
+                    }
+                }
+                if(isTrue === false)
+                {
+                    zomx[arrPosX] += 1;
+                    zomface[arrPosX] = "se";
+                }
             }
             if(userX < zomx[arrPosX])
             {
-                zomx[arrPosX] -= 1;
-                zomface[arrPosX] = "nw";
+                if(userX > zomx[arrPosX])
+                {
+                    var isTrue = false;
+                    for(var i = 0; i < zomx.length; i++)
+                    {
+                        if(i != arrPosX)
+                        {
+                            if(checkCollision(zomx[arrPosX] - 2, zomy[arrPosY], zomx[i], zomy[i]) === true)
+                            {
+                                isTrue = true;
+                            }
+                        }
+                    }
+                    if(isTrue === false)
+                    {
+                        zomx[arrPosX] -= 1;
+                        zomface[arrPosX] = "nw";
+                    }
+                }
             }
         }
         
@@ -694,10 +812,10 @@ function hitByBullet()
         {
             if(bulletCollision(j, i) === true)
             {
-                zomhealth[i] -= 35;
-                bulletx.splice(j);
-                bullety.splice(j);
-                bulletd.splice(j);
+                zomhealth[i] -= 14;
+                bulletx.splice(j, 1);
+                bullety.splice(j, 1);
+                bulletd.splice(j, 1);
                 j--;
                 break;
             }
@@ -710,11 +828,78 @@ function checkZombieHealth()
     {
         if(zomhealth[i] <= 0)
         {
-            zomx.splice(i);
-            zomy.splice(i);
-            zomface.splice(i);
-            zomhealth.splice(i);
+            zomx.splice(i, 1);
+            zomy.splice(i, 1);
+            zomface.splice(i, 1);
+            zomhealth.splice(i, 1);
             i--;
+            score += 20;
         }
+    }
+}
+function addZombie(x, y, face, hp)
+{
+    zomx.push(x);
+    zomy.push(y);
+    zomface.push(face);
+    zomhealth.push(hp);
+    timeSinceAttack.push(1000);
+}
+function attackPlayer()
+{
+    playerHealth -= 4;
+}
+function zombieAttack(zombxCoord, zombyCoord)
+{
+    if(checkCollision(userX, userY, zomx[zombxCoord] + 2, zomy[zombyCoord] + 1) === true && timeSinceAttack[zombxCoord] >= 1000)
+    {
+        timeSinceAttack[zombxCoord] = 0;
+        attackPlayer();
+    }
+    else if(checkCollision(userX, userY, zomx[zombxCoord] - 2, zomy[zombyCoord] + 1) === true && timeSinceAttack[zombxCoord] >= 1000)
+    {
+        timeSinceAttack[zombxCoord] = 0;
+        attackPlayer();
+    }
+    else if(checkCollision(userX, userY, zomx[zombxCoord] + 2, zomy[zombyCoord] - 1) === true && timeSinceAttack[zombxCoord] >= 1000)
+    {
+        timeSinceAttack[zombxCoord] = 0;
+        attackPlayer();
+    }
+    else if(checkCollision(userX, userY, zomx[zombxCoord] - 2, zomy[zombyCoord] - 1) === true && timeSinceAttack[zombxCoord] >= 1000)
+    {
+        timeSinceAttack[zombxCoord] = 0;
+        attackPlayer();
+    }
+}
+function allZombiesAttack()
+{
+    for(var i = 0; i < zombx.length; i++)
+    {
+        zombieAttack(i, i);
+    }
+}
+function addtimeSinceLastAttack()
+{
+    for(var i = 0; i < zomx.length; i++)
+    {
+        timeSinceAttack[i] += 10;
+    }
+}
+function drawZombieHealth()
+{
+    for(var i = 0; i < zomhealth.length; i++)
+    {
+        ctx.beginPath();
+        ctx.rect(zomx[i] - 20, zomy[i] - 60, 40, 5)
+        ctx.closePath();
+        ctx.fillStyle = "red"; //"#bda27e"
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.rect(zomx[i] - 20, zomy[i] - 60, zomhealth[i], 5)
+        ctx.closePath();
+        ctx.fillStyle = "green"; //"#bda27e"
+        ctx.fill();
     }
 }
