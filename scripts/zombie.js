@@ -57,7 +57,7 @@ function checkCollision(x, y, xZ, yZ)
 
     var xxabs = Math.abs(WW1*UU1);
     var yyabs = Math.abs(WW2*VV1);
-            
+
     if((xxabs/bb) + (yyabs/aa) <= 1)
     {
         return true;
@@ -84,7 +84,7 @@ function checkCollision(x, y, xZ, yZ)
 
     xxabs = Math.abs(WW1*UU1);
     yyabs = Math.abs(WW2*VV1);
-    
+
     if((xxabs/bb) + (yyabs/aa) <= 1)
     {
         return true;
@@ -111,7 +111,7 @@ function checkCollision(x, y, xZ, yZ)
 
     xxabs = Math.abs(WW1*UU1);
     yyabs = Math.abs(WW2*VV1);
-    
+
     if((xxabs/bb) + (yyabs/aa) <= 1)
     {
         return true;
@@ -138,7 +138,7 @@ function checkCollision(x, y, xZ, yZ)
 
     xxabs = Math.abs(WW1*UU1);
     yyabs = Math.abs(WW2*VV1);
-    
+
     if((xxabs/bb) + (yyabs/aa) <= 1)
     {
         return true;
@@ -146,7 +146,7 @@ function checkCollision(x, y, xZ, yZ)
     return false;
 }
 function closestCollision(x, y, xZ, yZ)
-{  
+{
     var holder = 1000;
     var xx1 = x;
     var yy1 = y;
@@ -170,7 +170,7 @@ function closestCollision(x, y, xZ, yZ)
 
     var xxabs = Math.abs(WW1*UU1);
     var yyabs = Math.abs(WW2*VV1);
-            
+
     if((xxabs/bb) + (yyabs/aa) <= holder)
     {
         holder = (xxabs/bb) + (yyabs/aa);
@@ -197,7 +197,7 @@ function closestCollision(x, y, xZ, yZ)
 
     xxabs = Math.abs(WW1*UU1);
     yyabs = Math.abs(WW2*VV1);
-    
+
     if((xxabs/bb) + (yyabs/aa) <= holder)
     {
         holder = (xxabs/bb) + (yyabs/aa);
@@ -224,7 +224,7 @@ function closestCollision(x, y, xZ, yZ)
 
     xxabs = Math.abs(WW1*UU1);
     yyabs = Math.abs(WW2*VV1);
-    
+
     if((xxabs/bb) + (yyabs/aa) <= holder)
     {
         holder = (xxabs/bb) + (yyabs/aa);
@@ -251,7 +251,7 @@ function closestCollision(x, y, xZ, yZ)
 
     xxabs = Math.abs(WW1*UU1);
     yyabs = Math.abs(WW2*VV1);
-    
+
     if((xxabs/bb) + (yyabs/aa) <= holder)
     {
         holder = (xxabs/bb) + (yyabs/aa);
@@ -261,7 +261,7 @@ function closestCollision(x, y, xZ, yZ)
 
 function checkZombieCollisions(x, y)
 {
-    
+
     for(var i = 0; i < zomx.length; i++)
     {
         if(checkCollision(x, y, zomx[i], zomy[i]) === true)
@@ -299,7 +299,7 @@ function listOrder()
             confirmed = true;
         }
     }
-    
+
     if(confirmed === false)
     {
         list.push(-1);
@@ -337,7 +337,7 @@ function listOrder()
         }
     }
 }
-function drawZombieHead(x, y, wx, wy, h, face) 
+function drawZombieHead(x, y, wx, wy, h, face)
 {
     // left face
     ctx.beginPath();
@@ -351,7 +351,7 @@ function drawZombieHead(x, y, wx, wy, h, face)
     ctx.stroke();
     ctx.fill();
 
-    
+
 
     // right face
     ctx.beginPath();
@@ -360,20 +360,20 @@ function drawZombieHead(x, y, wx, wy, h, face)
     ctx.lineTo(x + wy, y - h - wy * 0.5);
     ctx.lineTo(x, y - h * 1);
     ctx.closePath();
-    ctx.fillStyle = "#78C165"; // 
+    ctx.fillStyle = "#78C165"; //
     ctx.strokeStyle = "7C9861"; //"#676744"
     ctx.stroke();
     ctx.fill();
     if(face === "sw")
     {
-            // right face HAIR
+        // right face HAIR
         ctx.beginPath();
         ctx.moveTo(x, y - 18);
         ctx.lineTo(x + wy, y - wy * 0.5);
         ctx.lineTo(x + wy, y - h - wy * 0.5);
         ctx.lineTo(x, y - h * 1);
         ctx.closePath();
-        ctx.fillStyle = "#55885A"; // 
+        ctx.fillStyle = "#55885A"; //
         ctx.strokeStyle = "7C9861"; //"#676744"
         ctx.stroke();
         ctx.fill();
@@ -392,66 +392,66 @@ function drawZombieHead(x, y, wx, wy, h, face)
     }
     if(face === "se")
     {
-           // right face HAIR
-           ctx.beginPath();
-           ctx.moveTo(x, y - 18);
-           ctx.lineTo(x + wy, y - wy * 0.5 - 18);
-           ctx.lineTo(x + wy, y - h - wy * 0.5);
-           ctx.lineTo(x, y - h * 1);
-           ctx.closePath();
-           ctx.fillStyle = "#55885A"; // 
-           ctx.strokeStyle = "7C9861"; //"#676744"
-           ctx.stroke();
-           ctx.fill();
-   
-           // left face HAIR
-           ctx.beginPath();
-           ctx.moveTo(x, y - 18);
-           ctx.lineTo(x - wx, y - wx * 0.5);
-           ctx.lineTo(x - wx, y - h - wx * 0.5);
-           ctx.lineTo(x, y - h * 1);
-           ctx.closePath();
-           ctx.fillStyle = "#55885A"; //#80461B
-           ctx.strokeStyle = "7C9861";
-           ctx.stroke();
-           ctx.fill();
+        // right face HAIR
+        ctx.beginPath();
+        ctx.moveTo(x, y - 18);
+        ctx.lineTo(x + wy, y - wy * 0.5 - 18);
+        ctx.lineTo(x + wy, y - h - wy * 0.5);
+        ctx.lineTo(x, y - h * 1);
+        ctx.closePath();
+        ctx.fillStyle = "#55885A"; //
+        ctx.strokeStyle = "7C9861"; //"#676744"
+        ctx.stroke();
+        ctx.fill();
+
+        // left face HAIR
+        ctx.beginPath();
+        ctx.moveTo(x, y - 18);
+        ctx.lineTo(x - wx, y - wx * 0.5);
+        ctx.lineTo(x - wx, y - h - wx * 0.5);
+        ctx.lineTo(x, y - h * 1);
+        ctx.closePath();
+        ctx.fillStyle = "#55885A"; //#80461B
+        ctx.strokeStyle = "7C9861";
+        ctx.stroke();
+        ctx.fill();
     }
     if(face === "nw")
     {
-           // right face HAIR
-           ctx.beginPath();
-           ctx.moveTo(x, y);
-           ctx.lineTo(x + wy, y - wy * 0.5);
-           ctx.lineTo(x + wy, y - h - wy * 0.5);
-           ctx.lineTo(x, y - h * 1);
-           ctx.closePath();
-           ctx.fillStyle = "#55885A"; // 
-           ctx.strokeStyle = "7C9861"; //"#676744"
-           ctx.stroke();
-           ctx.fill();
-   
-           // left face HAIR
-           ctx.beginPath();
-           ctx.moveTo(x, y);
-           ctx.lineTo(x - wx, y - wx * 0.5-18);
-           ctx.lineTo(x - wx, y - h - wx * 0.5);
-           ctx.lineTo(x, y - h * 1);
-           ctx.closePath();
-           ctx.fillStyle = "#55885A"; //#80461B
-           ctx.strokeStyle = "7C9861";
-           ctx.stroke();
-           ctx.fill();
+        // right face HAIR
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + wy, y - wy * 0.5);
+        ctx.lineTo(x + wy, y - h - wy * 0.5);
+        ctx.lineTo(x, y - h * 1);
+        ctx.closePath();
+        ctx.fillStyle = "#55885A"; //
+        ctx.strokeStyle = "7C9861"; //"#676744"
+        ctx.stroke();
+        ctx.fill();
+
+        // left face HAIR
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - wx, y - wx * 0.5-18);
+        ctx.lineTo(x - wx, y - h - wx * 0.5);
+        ctx.lineTo(x, y - h * 1);
+        ctx.closePath();
+        ctx.fillStyle = "#55885A"; //#80461B
+        ctx.strokeStyle = "7C9861";
+        ctx.stroke();
+        ctx.fill();
     }
     if(face === "ne")
     {
-            // right face HAIR
+        // right face HAIR
         ctx.beginPath();
         ctx.moveTo(x, y);
         ctx.lineTo(x + wy, y - wy * 0.5 - 18);
         ctx.lineTo(x + wy, y - h - wy * 0.5);
         ctx.lineTo(x, y - h * 1);
         ctx.closePath();
-        ctx.fillStyle = "#55885A"; // 
+        ctx.fillStyle = "#55885A"; //
         ctx.strokeStyle = "7C9861"; //"#676744"
         ctx.stroke();
         ctx.fill();
@@ -468,7 +468,7 @@ function drawZombieHead(x, y, wx, wy, h, face)
         ctx.stroke();
         ctx.fill();
     }
-    
+
     // center face
     ctx.beginPath();
     ctx.moveTo(x, y - h);
@@ -477,133 +477,133 @@ function drawZombieHead(x, y, wx, wy, h, face)
     ctx.lineTo(x + wy, y - h - wy * 0.5);
     ctx.closePath();
     ctx.fillStyle = "#55885A"; //"#D2B48C"
-    ctx.strokeStyle = "7C9861"; 
+    ctx.strokeStyle = "7C9861";
     ctx.stroke();
-    ctx.fill();      
+    ctx.fill();
 }
-function drawZombieChest(x, y, wx, wy, h) 
+function drawZombieChest(x, y, wx, wy, h)
 {
-   // left face
-   ctx.beginPath();
-   ctx.moveTo(x, y);
-   ctx.lineTo(x - wx, y - wx * 0.5);
-   ctx.lineTo(x - wx, y - h - wx * 0.5);
-   ctx.lineTo(x, y - h * 1);
-   ctx.closePath();
-   ctx.fillStyle = "#64484F"; //"#bda27e"
-   ctx.strokeStyle = "#7C9861";
-   ctx.stroke();
-   ctx.fill();
+    // left face
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - wx, y - wx * 0.5);
+    ctx.lineTo(x - wx, y - h - wx * 0.5);
+    ctx.lineTo(x, y - h * 1);
+    ctx.closePath();
+    ctx.fillStyle = "#64484F"; //"#bda27e"
+    ctx.strokeStyle = "#7C9861";
+    ctx.stroke();
+    ctx.fill();
 
 
-   
-   // right face
-   ctx.beginPath();
-   ctx.moveTo(x, y);
-   ctx.lineTo(x + wy, y - wy * 0.5);
-   ctx.lineTo(x + wy, y - h - wy * 0.5);
-   ctx.lineTo(x, y - h * 1);
-   ctx.closePath();
-   ctx.fillStyle = "#64484F"; // "#a89070"
-   ctx.strokeStyle = "#7C9861"; //"#676744"
-   ctx.stroke();
-   ctx.fill();
 
-   // center face
-   ctx.beginPath();
-   ctx.moveTo(x, y - h);
-   ctx.lineTo(x - wx, y - h - wx * 0.5);
-   ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
-   ctx.lineTo(x + wy, y - h - wy * 0.5);
-   ctx.closePath();
-   ctx.fillStyle = "#64484F";
-   ctx.strokeStyle = "#7C9861"; 
-   ctx.stroke();
-   ctx.fill();      
+    // right face
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + wy, y - wy * 0.5);
+    ctx.lineTo(x + wy, y - h - wy * 0.5);
+    ctx.lineTo(x, y - h * 1);
+    ctx.closePath();
+    ctx.fillStyle = "#64484F"; // "#a89070"
+    ctx.strokeStyle = "#7C9861"; //"#676744"
+    ctx.stroke();
+    ctx.fill();
+
+    // center face
+    ctx.beginPath();
+    ctx.moveTo(x, y - h);
+    ctx.lineTo(x - wx, y - h - wx * 0.5);
+    ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
+    ctx.lineTo(x + wy, y - h - wy * 0.5);
+    ctx.closePath();
+    ctx.fillStyle = "#64484F";
+    ctx.strokeStyle = "#7C9861";
+    ctx.stroke();
+    ctx.fill();
 }
-function drawZombieArm(x, y, wx, wy, h) 
+function drawZombieArm(x, y, wx, wy, h)
 {
-    
-   // left face
-   ctx.beginPath();
-   ctx.moveTo(x - 8, y);
-   ctx.lineTo(x - 13, y - h  +7);
-   ctx.lineTo(x - 13, y - h + 1);
-   
-   ctx.lineTo(x - 8, y - h + 5);
-   
-   ctx.closePath();
-   ctx.fillStyle = "#78C165";
-   ctx.strokeStyle = "#7C9861";
-   ctx.stroke();
-   ctx.fill();
-    
-   // right face
-   ctx.beginPath();
-   ctx.moveTo(x - 8, y);
-   ctx.lineTo(x + wy, y - wy * 0.5 -4);
-   ctx.lineTo(x + wy, y - h - wy * 0.5);
-   ctx.lineTo(x - 8, y - h + 4);
-   ctx.closePath();
-   ctx.fillStyle = "#78C165"; // 
-   ctx.strokeStyle = "#7C9861"; //"#676744"
-   ctx.stroke();
-   ctx.fill();
 
-   // center face
-   ctx.beginPath();
-   ctx.moveTo(x - 8, y - h + 4);
-   ctx.lineTo(x - 12, y - h + 1);
-   ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
-   ctx.lineTo(x + wy, y - h - wy * 0.5);
-   ctx.closePath();
-   ctx.fillStyle = "#78C165";
-   ctx.strokeStyle = "#7C9861"; 
-   ctx.stroke();
-   ctx.fill();  
-       
+    // left face
+    ctx.beginPath();
+    ctx.moveTo(x - 8, y);
+    ctx.lineTo(x - 13, y - h  +7);
+    ctx.lineTo(x - 13, y - h + 1);
+
+    ctx.lineTo(x - 8, y - h + 5);
+
+    ctx.closePath();
+    ctx.fillStyle = "#78C165";
+    ctx.strokeStyle = "#7C9861";
+    ctx.stroke();
+    ctx.fill();
+
+    // right face
+    ctx.beginPath();
+    ctx.moveTo(x - 8, y);
+    ctx.lineTo(x + wy, y - wy * 0.5 -4);
+    ctx.lineTo(x + wy, y - h - wy * 0.5);
+    ctx.lineTo(x - 8, y - h + 4);
+    ctx.closePath();
+    ctx.fillStyle = "#78C165"; //
+    ctx.strokeStyle = "#7C9861"; //"#676744"
+    ctx.stroke();
+    ctx.fill();
+
+    // center face
+    ctx.beginPath();
+    ctx.moveTo(x - 8, y - h + 4);
+    ctx.lineTo(x - 12, y - h + 1);
+    ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
+    ctx.lineTo(x + wy, y - h - wy * 0.5);
+    ctx.closePath();
+    ctx.fillStyle = "#78C165";
+    ctx.strokeStyle = "#7C9861";
+    ctx.stroke();
+    ctx.fill();
+
 }
-function drawZombieArm2(x, y, wx, wy, h) 
+function drawZombieArm2(x, y, wx, wy, h)
 {
-    
-   // left face
-   ctx.beginPath();
-   ctx.moveTo(x + 8, y);
-   ctx.lineTo(x + 13, y - h  +7);
-   ctx.lineTo(x + 13, y - h + 1);
-   
-   ctx.lineTo(x + 8, y - h + 5);
-   
-   ctx.closePath();
-   ctx.fillStyle = "#78C165";
-   ctx.strokeStyle = "#7C9861";
-   ctx.stroke();
-   ctx.fill();
-    
-   // right face
-   ctx.beginPath();
-   ctx.moveTo(x + 8, y);
-   ctx.lineTo(x - wy, y - wy * 0.5 -4);
-   ctx.lineTo(x - wy, y - h - wy * 0.5);
-   ctx.lineTo(x + 8, y - h + 4);
-   ctx.closePath();
-   ctx.fillStyle = "#78C165"; // 
-   ctx.strokeStyle = "#7C9861"; //"#676744"
-   ctx.stroke();
-   ctx.fill();
 
-   // center face
-   ctx.beginPath();
-   ctx.moveTo(x + 8, y - h + 4);
-   ctx.lineTo(x + 12, y - h + 1);
-   ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
-   ctx.lineTo(x - wy, y - h - wy * 0.5);
-   ctx.closePath();
-   ctx.fillStyle = "#78C165";
-   ctx.strokeStyle = "#7C9861"; 
-   ctx.stroke();
-   ctx.fill();  
-       
+    // left face
+    ctx.beginPath();
+    ctx.moveTo(x + 8, y);
+    ctx.lineTo(x + 13, y - h  +7);
+    ctx.lineTo(x + 13, y - h + 1);
+
+    ctx.lineTo(x + 8, y - h + 5);
+
+    ctx.closePath();
+    ctx.fillStyle = "#78C165";
+    ctx.strokeStyle = "#7C9861";
+    ctx.stroke();
+    ctx.fill();
+
+    // right face
+    ctx.beginPath();
+    ctx.moveTo(x + 8, y);
+    ctx.lineTo(x - wy, y - wy * 0.5 -4);
+    ctx.lineTo(x - wy, y - h - wy * 0.5);
+    ctx.lineTo(x + 8, y - h + 4);
+    ctx.closePath();
+    ctx.fillStyle = "#78C165"; //
+    ctx.strokeStyle = "#7C9861"; //"#676744"
+    ctx.stroke();
+    ctx.fill();
+
+    // center face
+    ctx.beginPath();
+    ctx.moveTo(x + 8, y - h + 4);
+    ctx.lineTo(x + 12, y - h + 1);
+    ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
+    ctx.lineTo(x - wy, y - h - wy * 0.5);
+    ctx.closePath();
+    ctx.fillStyle = "#78C165";
+    ctx.strokeStyle = "#7C9861";
+    ctx.stroke();
+    ctx.fill();
+
 }
 
 function implementAI()
@@ -738,7 +738,7 @@ function chase(arrPosX, arrPosY)
             }
             if(userY < zomy[arrPosY])
             {
-                
+
                 var isTrue = false;
                 for(var i = 0; i < zomx.length; i++)
                 {
@@ -801,7 +801,7 @@ function chase(arrPosX, arrPosY)
                 }
             }
         }
-        
+
     }
 }
 function hitByBullet()

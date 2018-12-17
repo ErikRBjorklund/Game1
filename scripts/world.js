@@ -1,5 +1,6 @@
+// TODO: Generate these automatically rather than as literals
 var world = [[0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0], [0,0,0,0,0,0,0,0,0]];
-var world2 = [[false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false]]; 
+var world2 = [[false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false], [false, false, false, false, false, false, false, false, false]];
 function genWorld()
 {
     for(var i = 0; i < world.length; i++)
@@ -41,7 +42,7 @@ function playerLocation()
 
             var xabs = Math.abs(W1*U1);
             var yabs = Math.abs(W2*V1);
-            
+
             if((xabs/b) + (yabs/a) <= 1)
             {
                 world2[j][i] = true;
@@ -71,12 +72,12 @@ function playerLocation()
 
             xabs = Math.abs(W1*U1);
             yabs = Math.abs(W2*V1);
-            
+
             if((xabs/b) + (yabs/a) <= 1)
             {
                 world2[j][i] = true;
             }
-            
+
             ychange = -18;
             xchange = -15;
             x1 = 40 * (i) - 40 * (j) + 480 + xchange;
@@ -101,12 +102,12 @@ function playerLocation()
 
             xabs = Math.abs(W1*U1);
             yabs = Math.abs(W2*V1);
-            
+
             if((xabs/b) + (yabs/a) <= 1)
             {
                 world2[j][i] = true;
             }
-            
+
 
             ychange = -11;
             xchange = 0;
@@ -132,12 +133,12 @@ function playerLocation()
 
             xabs = Math.abs(W1*U1);
             yabs = Math.abs(W2*V1);
-            
+
             if((xabs/b) + (yabs/a) <= 1)
             {
                 world2[j][i] = true;
             }
-            
+
         }
     }
 }
@@ -145,13 +146,13 @@ function drawWorld()
 {
     for(var i = 0; i < world.length; i++)
     {
-        for(var j = 0; j < world[i].length; j++) 
+        for(var j = 0; j < world[i].length; j++)
         {
             if(world[j][i] === 0)
                 drawGrass(i * 40  - j * 40 + 480, j*20 + i*20 + 240, 40, 40, 40);
             if(world[j][i] === 1)
                 drawSand(i * 40  - j * 40 + 480, j*20 + i*20 + 240, 40, 40, 40);
-                /*
+            /*
             if(world2[j][i] === true)
             {
                 drawPlayerTop(i * 40  - j * 40 + 480, j*20 + i*20 + 240, 40, 40, 40);
@@ -159,7 +160,7 @@ function drawWorld()
         }
     }
 }
-function drawSand(x, y, wx, wy, h) 
+function drawSand(x, y, wx, wy, h)
 {
     // left face
     ctx.beginPath();
@@ -218,7 +219,7 @@ function drawGrass(x, y, wx, wy, h)
     ctx.lineTo(x + wy, y - h - wy * 0.5);
     ctx.lineTo(x, y - h * 1);
     ctx.closePath();
-    ctx.fillStyle = "#3D5229"; // 
+    ctx.fillStyle = "#3D5229"; //
     ctx.strokeStyle = "#293A18"; //"#676744"
     ctx.stroke();
     ctx.fill();
@@ -231,7 +232,7 @@ function drawGrass(x, y, wx, wy, h)
     ctx.lineTo(x + wy, y - h - wy * 0.5);
     ctx.closePath();
     ctx.fillStyle = "#3B5323";
-    ctx.strokeStyle = "#293A18"; 
+    ctx.strokeStyle = "#293A18";
     ctx.stroke();
     ctx.fill();
 }
@@ -244,7 +245,7 @@ function drawPlayerTop(x, y, wx, wy, h)
     ctx.lineTo(x + wy, y - h - wy * 0.5);
     ctx.closePath();
     ctx.fillStyle = "blue";
-    
+
     ctx.strokeStyle = "#464340"; //"#8e8e5e"
     ctx.stroke();
     ctx.fill();
@@ -296,12 +297,12 @@ function isPlayerOffBoard(x, y)
 
     var xabs = Math.abs(W1*U1);
     var yabs = Math.abs(W2*V1);
-    
+
     if((xabs/b) + (yabs/a) > 1)
     {
         return true;
     }
-    
+
     ychange = -18;
     xchange = 15;
     x1 = 480 + xchange;
@@ -326,7 +327,7 @@ function isPlayerOffBoard(x, y)
 
     xabs = Math.abs(W1*U1);
     yabs = Math.abs(W2*V1);
-    
+
     if((xabs/b) + (yabs/a) > 1)
     {
         return true;
@@ -356,7 +357,7 @@ function isPlayerOffBoard(x, y)
 
     xabs = Math.abs(W1*U1);
     yabs = Math.abs(W2*V1);
-    
+
     if((xabs/b) + (yabs/a) > 1)
     {
         return true;
@@ -386,7 +387,7 @@ function isPlayerOffBoard(x, y)
 
     xabs = Math.abs(W1*U1);
     yabs = Math.abs(W2*V1);
-    
+
     if((xabs/b) + (yabs/a) > 1)
     {
         return true;
