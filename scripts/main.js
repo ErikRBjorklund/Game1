@@ -346,7 +346,7 @@ function keyDownHandler(e)
                 intro = 0;
             }
         }
-        else if (e.keyCode >= 96 && e.keyCode <= 105)
+        else if (e.keyCode >= 48 && e.keyCode <= 57)
             userInput += e.key;
     }
 }
