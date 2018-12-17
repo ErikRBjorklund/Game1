@@ -352,21 +352,19 @@ function keyDownHandler(e)
 }
 function keyUpHandler(e)
 {
-    if(e.key === 'w')
-    {
-        upPressed = false;
-    }
-    if(e.key === 's')
-    {
-        downPressed = false;
-    }
-    if(e.key === 'a')
-    {
-        leftPressed = false;
-    }
-    if(e.key === 'd')
-    {
-        rightPressed = false;
+    switch (e.key) {
+        case 'w':
+            upPressed = false;
+            break;
+        case 's':
+            downPressed = false;
+            break;
+        case 'a':
+            leftPressed = false;
+            break;
+        case 'd':
+            rightPressed = false;
+            break;
     }
 }
 function getRandomInt(min, max)
