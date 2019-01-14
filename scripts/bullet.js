@@ -2,58 +2,58 @@ var bulletx = [];
 var bullety = [];
 var bulletd = [];
 
-function drawBullet(x, y, wx, wy, h) 
+function drawBullet(x, y, wx, wy, h)
 {
-   // left face
-   ctx.beginPath();
-   ctx.moveTo(x, y - 25);
-   ctx.lineTo(x - wx, y - wx * 0.5 - 25);
-   ctx.lineTo(x - wx, y - h - wx * 0.5 - 25);
-   ctx.lineTo(x, y - h * 1 - 25);
-   ctx.closePath();
-   ctx.fillStyle = "#484848"; //"#bda27e"
-   ctx.strokeStyle = "#202020";
-   ctx.stroke();
-   ctx.fill();
+    // left face
+    ctx.beginPath();
+    ctx.moveTo(x, y - 25);
+    ctx.lineTo(x - wx, y - wx * 0.5 - 25);
+    ctx.lineTo(x - wx, y - h - wx * 0.5 - 25);
+    ctx.lineTo(x, y - h * 1 - 25);
+    ctx.closePath();
+    ctx.fillStyle = "#484848"; //"#bda27e"
+    ctx.strokeStyle = "#202020";
+    ctx.stroke();
+    ctx.fill();
 
 
-   
-   // right face
-   ctx.beginPath();
-   ctx.moveTo(x, y - 25);
-   ctx.lineTo(x + wy, y - wy * 0.5 - 25);
-   ctx.lineTo(x + wy, y - h - wy * 0.5 - 25);
-   ctx.lineTo(x, y - h * 1 - 25);
-   ctx.closePath();
-   ctx.fillStyle = "#484848"; // "#a89070"
-   ctx.strokeStyle = "#202020"; //"#676744"
-   ctx.stroke();
-   ctx.fill();
 
-   // center face
-   ctx.beginPath();
-   ctx.moveTo(x, y - h - 25);
-   ctx.lineTo(x - wx, y - h - wx * 0.5 - 25);
-   ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5) - 25);
-   ctx.lineTo(x + wy, y - h - wy * 0.5 - 25);
-   ctx.closePath();
-   ctx.fillStyle = "#484848";
-   ctx.strokeStyle = "#202020"; 
-   ctx.stroke();
-   ctx.fill();      
+    // right face
+    ctx.beginPath();
+    ctx.moveTo(x, y - 25);
+    ctx.lineTo(x + wy, y - wy * 0.5 - 25);
+    ctx.lineTo(x + wy, y - h - wy * 0.5 - 25);
+    ctx.lineTo(x, y - h * 1 - 25);
+    ctx.closePath();
+    ctx.fillStyle = "#484848"; // "#a89070"
+    ctx.strokeStyle = "#202020"; //"#676744"
+    ctx.stroke();
+    ctx.fill();
+
+    // center face
+    ctx.beginPath();
+    ctx.moveTo(x, y - h - 25);
+    ctx.lineTo(x - wx, y - h - wx * 0.5 - 25);
+    ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5) - 25);
+    ctx.lineTo(x + wy, y - h - wy * 0.5 - 25);
+    ctx.closePath();
+    ctx.fillStyle = "#484848";
+    ctx.strokeStyle = "#202020";
+    ctx.stroke();
+    ctx.fill();
 
 
-   // shadow face
-   ctx.beginPath();
-   ctx.moveTo(x, y - h);
-   ctx.lineTo(x - wx, y - h - wx * 0.5);
-   ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
-   ctx.lineTo(x + wy, y - h - wy * 0.5);
-   ctx.closePath();
-   ctx.fillStyle = "black";
-   ctx.strokeStyle = "black"; 
-   ctx.stroke();
-   ctx.fill();      
+    // shadow face
+    ctx.beginPath();
+    ctx.moveTo(x, y - h);
+    ctx.lineTo(x - wx, y - h - wx * 0.5);
+    ctx.lineTo(x - wx + wy, y - h - (wx * 0.5 + wy * 0.5));
+    ctx.lineTo(x + wy, y - h - wy * 0.5);
+    ctx.closePath();
+    ctx.fillStyle = "black";
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.fill();
 }
 function addBullet(x, y, direction)
 {
@@ -154,7 +154,7 @@ function bulletCollision(bullArrPos, zomArrPos)
 
     var xabs = Math.abs(W1*U1);
     var yabs = Math.abs(W2*V1);
-    
+
     if((xabs/b) + (yabs/a) <= 1)
     {
         return true;
@@ -183,7 +183,7 @@ function bulletCollision(bullArrPos, zomArrPos)
 
     xabs = Math.abs(W1*U1);
     yabs = Math.abs(W2*V1);
-    
+
     if((xabs/b) + (yabs/a) <= 1)
     {
         return true;
@@ -213,7 +213,7 @@ function bulletCollision(bullArrPos, zomArrPos)
 
     xabs = Math.abs(W1*U1);
     yabs = Math.abs(W2*V1);
-    
+
     if((xabs/b) + (yabs/a) <= 1)
     {
         return true;
@@ -243,7 +243,7 @@ function bulletCollision(bullArrPos, zomArrPos)
 
     xabs = Math.abs(W1*U1);
     yabs = Math.abs(W2*V1);
-    
+
     if((xabs/b) + (yabs/a) <= 1)
     {
         return true;
@@ -251,8 +251,8 @@ function bulletCollision(bullArrPos, zomArrPos)
 
     return false;
 
-    
-    
+
+
 }
 function moveAllBullets()
 {

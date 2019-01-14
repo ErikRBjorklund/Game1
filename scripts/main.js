@@ -3,7 +3,7 @@ window.onload = initAll;
 var canvas;
 var ctx;
 
- 
+
 var userX = 480;
 var userY = 320;
 
@@ -38,7 +38,7 @@ function initAll()
 function play()
 {
     ctx.clearRect(0, 0, 960, 640);
-   
+
     if(intro === 0)
     {
         introScreen();
@@ -75,7 +75,7 @@ function play()
     {
         drawWorld();
         changeUserPos();
-        
+
         drawAll();
         playerLocation();
         implementAI();
@@ -211,7 +211,7 @@ function play()
             }
         }
         timer++;
-    } 
+    }
     if(checkDead() === true)
     {
         drawMathProblem();
@@ -224,7 +224,7 @@ function changeUserPos()
         if(checkZombieCollisions(userX + 1, userY - 1) != true)
         {
             if(isPlayerOffBoard(userX + 2, userY - 1) === false)
-            {            
+            {
                 userY-=.5;
                 userX+=1;
             }
@@ -236,7 +236,7 @@ function changeUserPos()
         if(checkZombieCollisions(userX - 1, userY + 1) != true)
         {
             if(isPlayerOffBoard(userX - 2, userY + 1) === false)
-            {   
+            {
                 userY+=.5;
                 userX-=1;
             }
@@ -248,7 +248,7 @@ function changeUserPos()
         if(checkZombieCollisions(userX - 1, userY - 1) != true)
         {
             if(isPlayerOffBoard(userX - 2, userY - 1) === false)
-            {   
+            {
                 userY-=.5;
                 userX-=1;
             }
@@ -260,7 +260,7 @@ function changeUserPos()
         if(checkZombieCollisions(userX + 1, userY + 1) != true)
         {
             if(isPlayerOffBoard(userX + 1, userY + .5) === false)
-            {   
+            {
                 userY+=.5;
                 userX+=1;
             }
@@ -346,56 +346,55 @@ function keyDownHandler(e)
                 intro = 0;
             }
         }
-        else if(e.key === '0' || e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4' || e.key === '5' || e.key === '6' || e.key === '7' || e.key === '8' || e.key === '9')
+        else if (e.keyCode >= 48 && e.keyCode <= 57)
             userInput += e.key;
     }
 }
 function keyUpHandler(e)
 {
-    if(e.key === 'w')
-    {
-        upPressed = false;
-    }
-    if(e.key === 's')
-    {
-        downPressed = false;
-    }
-    if(e.key === 'a')
-    {
-        leftPressed = false;
-    }
-    if(e.key === 'd')
-    {
-        rightPressed = false;
+    // TODO: Use an array for directions, maybe pairs of X an Y directions
+    switch (e.key) {
+        case 'w':
+            upPressed = false;
+            break;
+        case 's':
+            downPressed = false;
+            break;
+        case 'a':
+            leftPressed = false;
+            break;
+        case 'd':
+            rightPressed = false;
+            break;
     }
 }
-function getRandomInt(min, max) 
+function getRandomInt(min, max)
 {
-  min = Math.ceil(min);
-  max = Math.floor(max) + 1;
-  return Math.floor(Math.random() * (max - min)) + min;
+    min = Math.ceil(min);
+    max = Math.floor(max) + 1;
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
-setInterval(play,10);
+setInterval(play, 10);
 
 
 function drawUserHealth()
 {
     // left face
-   ctx.beginPath();
-   ctx.rect(userX - 20, userY - 60, 40, 5)
-   ctx.closePath();
-   ctx.fillStyle = "red"; //"#bda27e"
-   ctx.fill();
+    ctx.beginPath();
+    ctx.rect(userX - 20, userY - 60, 40, 5)
+    ctx.closePath();
+    ctx.fillStyle = "red"; //"#bda27e"
+    ctx.fill();
 
-   if(playerHealth > 0)
-   {
+    if(playerHealth > 0)
+    {
         ctx.beginPath();
         ctx.rect(userX - 20, userY - 60, playerHealth, 5)
         ctx.closePath();
         ctx.fillStyle = "green"; //"#bda27e"
         ctx.fill();
-   }
+    }
 }
 function drawScore()
 {
@@ -421,10 +420,7 @@ function drawMathProblem()
 }
 function checkAnswer()
 {
-    if(rand1 + rand2 === parseInt(userInput))
-    {
-        return true;
-    }
+    return rand1 + rand2 === parseInt(userInput);
 }
 function introScreen()
 {
@@ -490,7 +486,7 @@ function introScreen5()
     ctx.font = "bold 60px Helvetica";
     ctx.fillStyle = "white";
     ctx.fillText("Controls:", 95, 125);
-    
+
     ctx.font = "bold 30px Helvetica";
     ctx.fillStyle = "white";
     ctx.fillText("Press Space to Continue", 290, 620);
@@ -526,13 +522,13 @@ function introScreen7()
     ctx.font = "bold 40px Helvetica";
     ctx.fillStyle = "red";
     ctx.fillText("The game gets progressively more difficult.", 75, 100);
-    
+
     ctx.fillStyle = "white";
     ctx.fillText("You do not regenerate health.", 75, 200);
     ctx.fillText("Zombies attack every second.", 75, 300);
     ctx.fillText("It takes 10 attacks to kill you.", 75, 400);
     ctx.fillText("TIP: KILL ZOMBIES QUICKLY!!", 75, 500);
-    
+
 
     ctx.font = "bold 30px Helvetica";
     ctx.fillStyle = "white";
@@ -546,7 +542,7 @@ function introScreen8()
     ctx.font = "bold 40px Helvetica";
     ctx.fillStyle = "red";
     ctx.fillText("Zombies spawn every 3 seconds.", 75, 100);
-    
+
     ctx.fillStyle = "white";
     ctx.fillText("You get 10 points per zombie spawn", 75, 150);
     ctx.fillText("You get 20 points per zombie kill", 75, 250);
